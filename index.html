@@ -1093,13 +1093,6 @@
     renderFeedbacks();
   }
 
-  const defaultFeedbacks = [
-    { name: 'Rohit Sharma', rating: 5, comment: 'Excellent service! Dr. Saikat Ghosh was very helpful and the appointment booking was super easy. Highly recommended!', date: '02 Jun 2026' },
-    { name: 'Priya Das', rating: 5, comment: 'Very smooth experience. Got my appointment confirmed instantly on email. Dr. B B Mandal is an amazing pediatrician!', date: '01 Jun 2026' },
-    { name: 'Sumon Biswas', rating: 4, comment: 'Good platform overall. Dr. Mohammed Yasin is very professional. Would love a mobile app version too!', date: '30 May 2026' },
-    { name: 'Ankita Roy', rating: 5, comment: 'Best online doctor platform I have used. The AI symptom checker is very accurate and the doctors are top quality!', date: '28 May 2026' },
-  ];
-
   function renderFeedbacks() {
     const userFeedbacks = JSON.parse(localStorage.getItem('medai_feedbacks') || '[]');
     const feedbacks = [...userFeedbacks, ...defaultFeedbacks];
