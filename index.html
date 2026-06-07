@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ai based Online Doctor Appointment & Consultation System — Smart Healthcare, Anytime</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -389,6 +390,53 @@
 
   /* TESTIMONIALS */
   .test-section { background: var(--cream); }
+
+  /* FEEDBACK FORM */
+  .feedback-wrap {
+    max-width: 600px; margin: 0 auto 3rem; 
+    background: var(--white); border-radius: 24px;
+    padding: 2.5rem; border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 8px 32px rgba(10,22,40,0.07);
+  }
+  .star-row { display: flex; gap: 8px; justify-content: center; margin-bottom: 1.5rem; }
+  .star-btn {
+    font-size: 2rem; cursor: pointer; color: #ddd;
+    background: none; border: none; transition: color 0.15s, transform 0.15s;
+  }
+  .star-btn:hover, .star-btn.active { color: var(--gold); transform: scale(1.2); }
+  .feedback-name {
+    width: 100%; padding: 0.75rem 1rem; border-radius: 10px;
+    border: 1.5px solid var(--border); font-size: 0.95rem;
+    font-family: inherit; margin-bottom: 1rem; outline: none;
+    transition: border-color 0.2s;
+  }
+  .feedback-name:focus { border-color: var(--mint); }
+  .feedback-textarea {
+    width: 100%; padding: 0.75rem 1rem; border-radius: 10px;
+    border: 1.5px solid var(--border); font-size: 0.95rem;
+    font-family: inherit; resize: vertical; outline: none;
+    transition: border-color 0.2s; margin-bottom: 1.2rem;
+  }
+  .feedback-textarea:focus { border-color: var(--mint); }
+  .feedback-submit {
+    width: 100%; padding: 0.9rem; background: var(--mint);
+    color: white; border: none; border-radius: 12px;
+    font-size: 1rem; font-weight: 600; cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .feedback-submit:hover { background: var(--mint-dark); transform: translateY(-1px); }
+  .feedback-cards { 
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 1.2rem; max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+  }
+  .fb-card {
+    background: var(--white); border-radius: 16px; padding: 1.5rem;
+    border: 1px solid rgba(0,0,0,0.06); animation: fadeUp 0.4s ease;
+  }
+  .fb-stars { color: var(--gold); margin-bottom: 0.5rem; font-size: 1rem; }
+  .fb-comment { font-size: 0.9rem; color: var(--slate); line-height: 1.6; margin-bottom: 0.8rem; }
+  .fb-name { font-size: 0.82rem; font-weight: 600; color: var(--navy); }
+  .fb-empty { text-align: center; color: var(--text-muted); font-size: 0.9rem; padding: 1rem; }
   .test-header { text-align: center; margin-bottom: 3rem; }
   .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   .test-card {
@@ -650,6 +698,76 @@
       </div>
       <button class="book-btn" onclick="scrollToForm()">Book Now</button>
     </div>
+    <div class="doctor-card">
+      <div class="doc-img" style="background:#e8f5e9;">🌿</div>
+      <div class="doc-card-name">Dr. Saikat Ghosh</div>
+      <div class="doc-card-spec">Ayurvedic (B.A.M.S)</div>
+      <div class="doc-card-meta">
+        <div class="doc-card-rating">★ <strong>4.8</strong></div>
+        <div class="doc-card-exp">Ayurveda</div>
+      </div>
+      <button class="book-btn" onclick="scrollToForm()">Book Now</button>
+    </div>
+    <div class="doctor-card">
+      <div class="doc-img" style="background:#fff8e1;">👨‍⚕️</div>
+      <div class="doc-card-name">Dr. A D Ghosh</div>
+      <div class="doc-card-spec">General Medicine</div>
+      <div class="doc-card-meta">
+        <div class="doc-card-rating">★ <strong>4.9</strong></div>
+        <div class="doc-card-exp">MBBS, MD</div>
+      </div>
+      <button class="book-btn" onclick="scrollToForm()">Book Now</button>
+    </div>
+    <div class="doctor-card">
+      <div class="doc-img" style="background:#f3e5f5;">👨‍⚕️</div>
+      <div class="doc-card-name">Sanhik Ghatak</div>
+      <div class="doc-card-spec">General Physician</div>
+      <div class="doc-card-meta">
+        <div class="doc-card-rating">★ <strong>4.7</strong></div>
+        <div class="doc-card-exp">MBBS</div>
+      </div>
+      <button class="book-btn" onclick="scrollToForm()">Book Now</button>
+    </div>
+    <div class="doctor-card">
+      <div class="doc-img" style="background:#e8eaf6;">🧠</div>
+      <div class="doc-card-name">Mohit Ranadip</div>
+      <div class="doc-card-spec">Psychologist</div>
+      <div class="doc-card-meta">
+        <div class="doc-card-rating">★ <strong>4.9</strong></div>
+        <div class="doc-card-exp">Mental Health</div>
+      </div>
+      <button class="book-btn" onclick="scrollToForm()">Book Now</button>
+    </div>
+    <div class="doctor-card">
+      <div class="doc-img" style="background:#fce4ec;">🦴</div>
+      <div class="doc-card-name">Dr. Kuldeep Mukherjee</div>
+      <div class="doc-card-spec">Orthopedic Surgeon</div>
+      <div class="doc-card-meta">
+        <div class="doc-card-rating">★ <strong>4.8</strong></div>
+        <div class="doc-card-exp">Orthopedics</div>
+      </div>
+      <button class="book-btn" onclick="scrollToForm()">Book Now</button>
+    </div>
+    <div class="doctor-card">
+      <div class="doc-img" style="background:#e0f7fa;">👶</div>
+      <div class="doc-card-name">Dr. B B Mandal</div>
+      <div class="doc-card-spec">Pediatrician</div>
+      <div class="doc-card-meta">
+        <div class="doc-card-rating">★ <strong>4.9</strong></div>
+        <div class="doc-card-exp">Child Specialist</div>
+      </div>
+      <button class="book-btn" onclick="scrollToForm()">Book Now</button>
+    </div>
+    <div class="doctor-card">
+      <div class="doc-img" style="background:#e8f5e9;">👁️</div>
+      <div class="doc-card-name">Dr. Mohammed Yasin</div>
+      <div class="doc-card-spec">Ophthalmic Consultant</div>
+      <div class="doc-card-meta">
+        <div class="doc-card-rating">★ <strong>5.0</strong></div>
+        <div class="doc-card-exp">MBBS, DOMS, MD</div>
+      </div>
+      <button class="book-btn" onclick="scrollToForm()">Book Now</button>
+    </div>
   </div>
 </section>
 
@@ -694,25 +812,25 @@
     <div class="form-row">
       <div class="form-group">
         <label>First Name</label>
-        <input type="text" placeholder="Name" />
+        <input type="text" id="appt-fname" placeholder="Name" />
       </div>
       <div class="form-group">
         <label>Last Name</label>
-        <input type="text" placeholder="Surname" />
+        <input type="text" id="appt-lname" placeholder="Surname" />
       </div>
     </div>
     <div class="form-group">
       <label>Email Address</label>
-      <input type="email" placeholder="email id" />
+      <input type="email" id="appt-email" placeholder="email id" />
     </div>
     <div class="form-group">
       <label>Phone Number</label>
-      <input type="tel" placeholder="phone number" />
+      <input type="tel" id="appt-phone" placeholder="phone number" />
     </div>
     <div class="form-row">
       <div class="form-group">
         <label>Specialty Needed</label>
-        <select>
+        <select id="appt-specialty">
           <option>Let AI decide</option>
           <option>Cardiology</option>
           <option>Neurology</option>
@@ -723,7 +841,7 @@
       </div>
       <div class="form-group">
         <label>Consultation Type</label>
-        <select>
+        <select id="appt-consult">
           <option>Video Call</option>
           <option>Phone Call</option>
           <option>In-Clinic</option>
@@ -732,30 +850,60 @@
     </div>
     <div class="form-group">
       <label>Describe Your Symptoms</label>
-      <textarea rows="3" placeholder="Brief description of your symptoms or concerns..."></textarea>
+      <textarea rows="3" id="appt-symptoms" placeholder="Brief description of your symptoms or concerns..."></textarea>
     </div>
       <div class="form-group">
         <label>Payment type</label>
-        <select>
+        <select id="appt-payment">
           <option>Cash</option>
           <option>Online</option>
           <option>Scanner</option>
         </select>
       </div>
 
-    <button class="submit-btn" onclick="showToast()">Book My Appointment →</button>
+    <button class="submit-btn" onclick="bookAppointment()">Book My Appointment →</button>
   </div>
     
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="test-section">
+<section class="test-section" style="padding: 5rem 2rem;">
   <div class="test-header">
-    <div class="section-label">Give us your exprience</div>
-    <div class="section-title">FEEDBACK</div>
-    <input type="Feedback" placeholder="Feedback" />
+    <div class="section-label">Share Your Experience</div>
+    <div class="section-title">Patient Feedback</div>
+    <p class="section-sub" style="margin-bottom:2.5rem;">Your feedback helps us improve our services</p>
   </div>
+
+  <!-- Feedback Form -->
+  <div class="feedback-wrap">
+    <div style="text-align:center; margin-bottom:0.5rem; font-weight:600; color:var(--navy);">Rate your experience</div>
+    <div class="star-row" id="starRow">
+      <button class="star-btn" data-val="1">★</button>
+      <button class="star-btn" data-val="2">★</button>
+      <button class="star-btn" data-val="3">★</button>
+      <button class="star-btn" data-val="4">★</button>
+      <button class="star-btn" data-val="5">★</button>
+    </div>
+    <input class="feedback-name" id="fbName" type="text" placeholder="Your name" />
+    <textarea class="feedback-textarea" id="fbComment" rows="4" placeholder="Write your experience..."></textarea>
+    <button class="feedback-submit" onclick="submitFeedback()">Submit Feedback ✓</button>
   </div>
+
+  <!-- View Feedback Toggle Button -->
+  <div style="text-align:center; margin: 1.5rem 0;">
+    <button onclick="toggleFeedbacks()" id="viewFbBtn" style="
+      background: var(--navy); color: white; border: none;
+      padding: 0.75rem 2rem; border-radius: 100px; font-size: 0.95rem;
+      font-weight: 600; cursor: pointer; transition: background 0.2s, transform 0.2s;
+      font-family: inherit;
+    " onmouseover="this.style.background='var(--mint-dark)'" onmouseout="this.style.background='var(--navy)'">
+      👁️ View All Feedback
+    </button>
+  </div>
+
+  <!-- Feedback Cards (hidden by default) -->
+  <div class="feedback-cards" id="feedbackCards" style="display:none;">
+    <div class="fb-empty" id="fbEmpty">No feedback yet. Be the first to share! 🌟</div>
   </div>
 </section>
 
@@ -803,24 +951,204 @@
 <!-- TOAST -->
 <div class="toast" id="toast">
   <span class="toast-icon">✅</span>
-  <span>Appointment booked! Check your email for confirmation.</span>
+  <span id="toast-msg">Appointment booked! Check your email for confirmation.</span>
 </div>
 
 <script>
-  function showToast() {
-    const t = document.getElementById('toast');
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 4000);
+  // =====================================================
+  // EMAILJS SETUP — Yahan apni keys daalo
+  // Step 1: https://www.emailjs.com pe free account banao
+  // Step 2: Email Service connect karo (Gmail)
+  // Step 3: Template banao (neeche wale variables use karo)
+  // Step 4: Teen jagah apni keys replace karo:
+  // =====================================================
+  const EMAILJS_PUBLIC_KEY  = "RHd20CTlpuIALlSY0";
+  const EMAILJS_SERVICE_ID  = "service_0xp02yb";
+  const EMAILJS_TEMPLATE_ID = "template_065sudd";
+
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+  async function bookAppointment() {
+    const fname    = document.getElementById('appt-fname').value.trim();
+    const lname    = document.getElementById('appt-lname').value.trim();
+    const email    = document.getElementById('appt-email').value.trim();
+    const phone    = document.getElementById('appt-phone').value.trim();
+    const specialty = document.getElementById('appt-specialty').value;
+    const consult  = document.getElementById('appt-consult').value;
+    const symptoms = document.getElementById('appt-symptoms').value.trim();
+    const payment  = document.getElementById('appt-payment').value;
+    const btn      = document.querySelector('.submit-btn');
+
+    // Basic validation
+    if (!fname || !email) {
+      alert('Please enter your name and email address.');
+      return;
+    }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const templateParams = {
+      to_email:    email,
+      to_name:     fname + ' ' + lname,
+      from_name:   'MedAI Healthcare',
+      phone:       phone || 'Not provided',
+      specialty:   specialty,
+      consult_type: consult,
+      symptoms:    symptoms || 'Not specified',
+      payment:     payment,
+      booking_date: new Date().toLocaleString('en-IN', { dateStyle: 'full', timeStyle: 'short' })
+    };
+
+    try {
+      const result = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+      console.log('SUCCESS:', result.status, result.text);
+      showToast(true);
+    } catch (err) {
+      console.error('EmailJS full error:', err);
+      alert('EmailJS Error: ' + (err.text || err.message || JSON.stringify(err)));
+      showToast(false);
+    } finally {
+      btn.textContent = 'Book My Appointment →';
+      btn.disabled = false;
+    }
   }
+
+  function showToast(success = true) {
+    const t = document.getElementById('toast');
+    const msg = document.getElementById('toast-msg');
+    if (success) {
+      document.querySelector('.toast-icon').textContent = '✅';
+      msg.textContent = 'Appointment booked! Confirmation email sent to your inbox.';
+    } else {
+      document.querySelector('.toast-icon').textContent = '❌';
+      msg.textContent = 'Email send failed. Please check your EmailJS keys.';
+    }
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 5000);
+  }
+
+  // ---- FEEDBACK SYSTEM ----
+  let selectedRating = 0;
+
+  // Star interaction
+  document.querySelectorAll('.star-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedRating = parseInt(btn.dataset.val);
+      document.querySelectorAll('.star-btn').forEach(b => {
+        b.classList.toggle('active', parseInt(b.dataset.val) <= selectedRating);
+      });
+    });
+    btn.addEventListener('mouseover', () => {
+      document.querySelectorAll('.star-btn').forEach(b => {
+        b.style.color = parseInt(b.dataset.val) <= parseInt(btn.dataset.val) ? 'var(--gold)' : '#ddd';
+      });
+    });
+    btn.addEventListener('mouseout', () => {
+      document.querySelectorAll('.star-btn').forEach(b => {
+        b.style.color = parseInt(b.dataset.val) <= selectedRating ? 'var(--gold)' : '#ddd';
+      });
+    });
+  });
+
+  function submitFeedback() {
+    const name    = document.getElementById('fbName').value.trim();
+    const comment = document.getElementById('fbComment').value.trim();
+    if (!selectedRating) { alert('Please select a star rating!'); return; }
+    if (!comment) { alert('Please write your experience!'); return; }
+
+    const feedbacks = JSON.parse(localStorage.getItem('medai_feedbacks') || '[]');
+    const newFb = {
+      name: name || 'Anonymous',
+      rating: selectedRating,
+      comment,
+      date: new Date().toLocaleDateString('en-IN')
+    };
+    feedbacks.unshift(newFb);
+    localStorage.setItem('medai_feedbacks', JSON.stringify(feedbacks));
+
+    // Reset form
+    document.getElementById('fbName').value = '';
+    document.getElementById('fbComment').value = '';
+    selectedRating = 0;
+    document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('active'));
+
+    renderFeedbacks();
+    alert('Thank you for your feedback! 🌟');
+  }
+
+  function deleteFeedback(index) {
+    const pwd = prompt('Enter admin password to delete:');
+    if (pwd !== 'Jio@8918768815') {
+      alert('Wrong password! Access denied. ❌');
+      return;
+    }
+    const feedbacks = JSON.parse(localStorage.getItem('medai_feedbacks') || '[]');
+    feedbacks.splice(index, 1);
+    localStorage.setItem('medai_feedbacks', JSON.stringify(feedbacks));
+    renderFeedbacks();
+  }
+
+  const defaultFeedbacks = [
+    { name: 'Rohit Sharma', rating: 5, comment: 'Excellent service! Dr. Saikat Ghosh was very helpful and the appointment booking was super easy. Highly recommended!', date: '02 Jun 2026' },
+    { name: 'Priya Das', rating: 5, comment: 'Very smooth experience. Got my appointment confirmed instantly on email. Dr. B B Mandal is an amazing pediatrician!', date: '01 Jun 2026' },
+    { name: 'Sumon Biswas', rating: 4, comment: 'Good platform overall. Dr. Mohammed Yasin is very professional. Would love a mobile app version too!', date: '30 May 2026' },
+    { name: 'Ankita Roy', rating: 5, comment: 'Best online doctor platform I have used. The AI symptom checker is very accurate and the doctors are top quality!', date: '28 May 2026' },
+  ];
+
+  function renderFeedbacks() {
+    const userFeedbacks = JSON.parse(localStorage.getItem('medai_feedbacks') || '[]');
+    const feedbacks = [...userFeedbacks, ...defaultFeedbacks];
+    const container = document.getElementById('feedbackCards');
+    if (feedbacks.length === 0) {
+      container.innerHTML = '<div class="fb-empty" id="fbEmpty">No feedback yet. Be the first to share! 🌟</div>';
+      return;
+    }
+    container.innerHTML = feedbacks.map((fb, i) => `
+      <div class="fb-card" style="position:relative;">
+        <button onclick="deleteFeedback(${i})" title="Delete" style="position:absolute;top:10px;right:12px;background:none;border:none;cursor:pointer;font-size:1rem;color:#ccc;transition:color 0.2s;" onmouseover="this.style.color='#ff4444'" onmouseout="this.style.color='#ccc'">🗑️</button>
+        <div class="fb-stars">${'★'.repeat(fb.rating)}${'☆'.repeat(5 - fb.rating)}</div>
+        <div class="fb-comment">"${fb.comment}"</div>
+        <div class="fb-name">— ${fb.name} &nbsp;·&nbsp; <span style="font-weight:400;color:var(--text-muted)">${fb.date}</span></div>
+      </div>
+    `).join('');
+  }
+
+  // Toggle feedback visibility
+  let fbVisible = false;
+  function toggleFeedbacks() {
+    fbVisible = !fbVisible;
+    const cards = document.getElementById('feedbackCards');
+    const btn = document.getElementById('viewFbBtn');
+    if (fbVisible) {
+      cards.style.display = 'grid';
+      btn.textContent = '🙈 Hide Feedback';
+      renderFeedbacks();
+    } else {
+      cards.style.display = 'none';
+      btn.textContent = '👁️ View All Feedback';
+    }
+  }
+
+  // Load feedbacks on page load
+  renderFeedbacks();
+  // ---- END FEEDBACK SYSTEM ----
+
   function scrollToForm() {
     document.getElementById('appt').scrollIntoView({ behavior: 'smooth' });
   }
+
   document.querySelectorAll('.slot').forEach(s => {
     s.addEventListener('click', () => {
       document.querySelectorAll('.slot').forEach(x => x.classList.remove('active'));
       s.classList.add('active');
     });
   });
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -829,6 +1157,7 @@
       }
     });
   }, { threshold: 0.1 });
+
   document.querySelectorAll('.doctor-card, .test-card, .step, .spec-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
